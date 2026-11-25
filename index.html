@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RaffleApp | Sorteios online</title>
+  <meta name="description" content="Cadastre participantes, faça sorteios com animação e guarde o histórico.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <canvas id="confete" aria-hidden="true"></canvas>
+  <main class="app">
+    <header class="topo">
+      <h1>Raffle<span>App</span></h1>
+      <p>Sorteios justos, com animação e histórico.</p>
+    </header>
+
+    <div class="grade">
+      <!-- Participantes -->
+      <section class="cartao" aria-labelledby="t-part">
+        <div class="cartao__topo">
+          <h2 id="t-part">Participantes <span class="badge" id="total">0</span></h2>
+          <button class="link" id="limpar">Limpar lista</button>
+        </div>
+        <form id="form-add" class="add" autocomplete="off">
+          <label class="sr" for="nome">Nome do participante</label>
+          <input id="nome" type="text" maxlength="60" placeholder="Digite um nome e aperte Enter">
+          <button class="btn btn--escuro" type="submit">Adicionar</button>
+        </form>
+        <details class="colar">
+          <summary>Colar uma lista de nomes</summary>
+          <textarea id="lista-colada" rows="4" placeholder="Um nome por linha (ou separados por vírgula)"></textarea>
+          <button class="btn btn--escuro" id="importar">Adicionar todos</button>
+        </details>
+        <ul class="pessoas" id="pessoas"></ul>
+        <p class="aviso" id="aviso-part"></p>
+      </section>
+
+      <!-- Sorteio -->
+      <section class="cartao cartao--palco" aria-labelledby="t-sorteio">
+        <h2 id="t-sorteio" class="sr">Sorteio</h2>
+        <label class="premio">Prêmio
+          <input id="premio" type="text" maxlength="60" placeholder="Ex.: Vale-compras de R$ 100">
+        </label>
+        <div class="opcoes">
+          <label>Ganhadores
+            <span class="stepper">
+              <button type="button" data-passo="-1" aria-label="Menos">−</button>
+              <output id="qtd">1</output>
+              <button type="button" data-passo="1" aria-label="Mais">+</button>
+            </span>
+          </label>
+          <label class="check"><input type="checkbox" id="remover" checked> Tirar ganhadores da lista</label>
+        </div>
+
+        <div class="tela" id="tela" aria-live="polite">
+          <span class="tela__nome" id="tela-nome">Pronto para sortear</span>
+        </div>
+        <ol class="ganhadores" id="ganhadores"></ol>
+
+        <button class="btn btn--sortear" id="sortear">Sortear</button>
+        <button class="link" id="copiar" hidden>Copiar resultado</button>
+      </section>
+    </div>
+
+    <section class="cartao historico" aria-labelledby="t-hist">
+      <div class="cartao__topo">
+        <h2 id="t-hist">Histórico de sorteios</h2>
+        <button class="link" id="limpar-hist">Apagar histórico</button>
+      </div>
+      <ul id="historico"></ul>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" hidden></div>
+  <script src="js/script.js"></script>
+</body>
+</html>
